@@ -1,0 +1,15 @@
+# dependencias
+node_modules/
+
+# salidas
+dist/
+build/
+
+# archivos sensibles
+.env
+
+# logs
+*.log
+
+# sistema
+.DS_Store
