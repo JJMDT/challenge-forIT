@@ -3,6 +3,24 @@
     flex-direction: column;
     align-items: center;
 }
+.tableHead{
+    background-color: #282c34;
+    
+}
+.rowHead{
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+.btnAction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    color: white !important;
+
+}
 
 /* responsive  */
 @media (max-width: 1040px) {

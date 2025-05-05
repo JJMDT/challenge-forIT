@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from "react";
 import "./AllTasks.css";
-import { Typography,InputLabel,MenuItem,FormControl,Select,Button,Divider } from "@mui/material";
+import {
+  Typography,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Button,
+  Divider,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper,
+  TableContainer,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import DeleteIcon from '@mui/icons-material/Delete';
-import {ToastContainer, Zoom,Bounce, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import { ToastContainer, Zoom, Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AllTasks = () => {
   const navigate = useNavigate();
@@ -68,9 +82,9 @@ const AllTasks = () => {
     setStatus(event.target.value);
   };
 
-  const redirect = ()=>{
+  const redirect = () => {
     navigate("/itemTask");
-  }
+  };
 
   const filterStatusTasks = tasks.filter((task) => {
     if (status === "all") {
@@ -102,7 +116,6 @@ const AllTasks = () => {
       console.log("Error", error);
     }
   };
-
 
   return (
     <div className="container">
@@ -149,58 +162,92 @@ const AllTasks = () => {
         </Typography>
       )}
 
-      {filterStatusTasks.map((task) => (
-        <div className="task-list" key={task.id}>
-          <div className="task">
-            <div className="task-details"   onClick={() => navigate(`/tasks/${task.id}`)}
-              style={{ cursor: "pointer" }}>
-
-            {/* <label>ID: {task.id} </label> */}
-            <label>
-              Title: {task.title}
-            </label>
-            <label>{task.createdAt}</label>
-            <label>Status: {task.completed ? "Completed" : "Pending"} </label>
-            </div>
-
-            <div className="btnAction">
-              <Button
-                variant="text"
-                color="default"
-                size="small"
-                onClick={() => changeStatus(task.id)}
-                className={!task.completed ? "pendiente" : "completed"}
-                style={{
-                  margin: "0 5px",
-                }}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} size="medium">
+          <TableHead className="tableHead">
+            <TableRow>
+              <TableCell className="rowHead" align="left">
+                ID
+              </TableCell>
+              <TableCell className="rowHead" align="left">
+                Title
+              </TableCell>
+              <TableCell className="rowHead" align="left">
+                Date
+              </TableCell>
+              <TableCell className="rowHead" align="left">
+                Status
+              </TableCell>
+              <TableCell className="rowHead" align="center">
+                Action
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filterStatusTasks.map((task) => (
+              <TableRow
+                onClick={() => navigate(`/tasks/${task.id}`)}
+                style={{ cursor: "pointer" }}
+                key={task.id}
+                
               >
-                {!task.completed ? "Pending..." : "Completed"}
-              </Button>
+                <TableCell component="th" scope="row">
+                  {task.id}
+                </TableCell>
+                <TableCell align="left">{task.title}</TableCell>
+                <TableCell align="left">{task.createdAt}</TableCell>
+                <TableCell align="left">
+                  {task.completed ? "Completed" : "Pending"}
+                </TableCell>
+                <TableCell align="left">
+                  <div className="btnAction">
+                    <Button
+                      variant="text"
+                      color="default"
+                      size="small"
+                      onClick={(e) => {
+                        e.stopPropagation(); 
+                        changeStatus(task.id);
+                      }}
+                      className={!task.completed ? "pendiente" : "completed"}
+                      style={{
+                        margin: "0 5px",
+                      }}
+                    >
+                      {!task.completed ? "Pending..." : "Completed"}
+                    </Button>
 
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() => deleteTask(task.id)}
-                className="btnDelete"
-              >
-                <DeleteIcon fontSize="small" /> Delete
-              </Button>
-            </div>
-          </div>
-        </div>
-      ))}
-       <ToastContainer
-            position="bottom-right"
-            autoClose={1000}
-            hideProgressBar={false}
-            closeOnClick={false}
-            pauseOnHover={false}
-            draggable={true}
-            progress={undefined}
-            theme="colored"
-            transition={Bounce}
-            limit={5}
-          />
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={(e) => {
+                        e.stopPropagation(); 
+                        deleteTask(task.id);
+                      }}
+                      className="btnDelete"
+                    >
+                      <DeleteIcon fontSize="small" /> Delete
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        closeOnClick={false}
+        pauseOnHover={false}
+        draggable={true}
+        progress={undefined}
+        theme="colored"
+        transition={Bounce}
+        limit={5}
+      />
     </div>
   );
 };

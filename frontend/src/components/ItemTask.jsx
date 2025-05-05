@@ -78,7 +78,7 @@ const ItemTask = () => {
  
   return (
     <Box
-      component="form"
+      
       sx={{
         '& .MuiTextField-root': { m: 2, width: '500px' },
         display: 'flex',
@@ -92,10 +92,11 @@ const ItemTask = () => {
       <Typography variant="h4" gutterBottom>
         Details of Task
       </Typography>
-      <div className="nav">
+      <div className="nav" >
         <Button variant="contained" size="small" onClick={() => navigate(-1)}>
           Back
         </Button>
+       
       </div>
 
       <TextField
