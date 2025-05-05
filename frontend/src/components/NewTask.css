@@ -1,0 +1,123 @@
+.task-form {
+    background-color: #f9f9f9;
+    background-color: #282c34;
+    padding: 30px;
+    width: 800px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .task-form h3 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    color: white;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #288df8;
+    outline: none;
+  }
+
+  .task-list {
+    color: white;
+    background-color: #282c34;
+    width: 100%;
+    border-radius: 10px;
+    margin:  5px ;
+    padding: 5px;
+    transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+    text-align: start;
+
+  }
+
+  .task-list:hover {
+    background-color: #00000086;
+
+    
+  }
+  
+  .task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .task-details{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    align-items: center;
+    justify-items: center;
+    cursor: pointer;
+  }
+
+.btnAction{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.completed  {
+  background-color: rgb(2, 163, 50)!important;
+}
+.completed:hover {
+  background-color: rgb(0, 128, 0) !important;
+}
+.pendiente{
+  background-color: rgb(252, 143, 0)!important;
+}
+.pendiente:hover{
+  background-color: rgb(202, 115, 2)!important;
+}
+
+.status {
+  width: 90%;
+  display: flex;;
+  justify-content: space-around;
+
+}
+.status .task-pending, .task-completed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+}
+.status p {
+  font-size: 15px;
+  align-self: center;
+  
+}
+.task  label {
+  margin:0 40px;
+  cursor: pointer;
+}
+.btnDelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  border: 1px solid #fcf7f7;
+  border-radius: 5px;
+  padding: 2px 10px;
+}
